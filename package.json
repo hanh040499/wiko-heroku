@@ -1,0 +1,11 @@
+{
+  "name": "wiko-deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "heroku-postbuild": "cd server && yarn db:migrate-up"
+  },
+  "author": "",
+  "license": "ISC"
+}

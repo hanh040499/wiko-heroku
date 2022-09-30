@@ -1,0 +1,6 @@
+#ctxmenu {
+  position: fixed;
+  background: ghostwhite;
+  color: black;
+  cursor: pointer;
+}
