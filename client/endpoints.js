@@ -1,6 +1,6 @@
 const BASE_URL =
-  window.location.hostname === "kagome.io"
-    ? "https://kagome.io/api"
+  window.location.hostname === "wiko-application.herokuapp.com"
+    ? "https://wiko-application.herokuapp.com/api"
     : "http://localhost:4400/api";
 
 export const users = {

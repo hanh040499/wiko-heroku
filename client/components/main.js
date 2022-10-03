@@ -77,10 +77,7 @@ export default {
         ctxMenu.outerHTML = "";
       }
       const anchorHref = anchor.getAttribute("href");
-      const anchorTitle =
-        window.location.hostname === "kagome.io"
-          ? anchorHref.slice(13)
-          : anchorHref.slice(8);
+      const anchorTitle = anchorHref.slice(8);
 
       const articleResult = await fetch(
         nodeState.getArticle({
@@ -218,8 +215,6 @@ export default {
       const allNode = Array.from(nodeList);
       const sections = {};
       let currentSectionHeading = "_Summary";
-      const prependHrefStr =
-        window.location.hostname === "kagome.io" ? "/wiko/#" : "/#";
       for (const node of allNode) {
         if (node.tagName === "H2") {
           if (node.id === "mw-toc-heading") continue;
@@ -234,7 +229,7 @@ export default {
           const parseText = parser.parseFromString(node.outerHTML, "text/html");
           const queryTag = parseText.querySelectorAll("a[href*='/wiki']");
           for (const tag of queryTag) {
-            tag.href = prependHrefStr + tag.href.match(/\/wiki.+/)[0];
+            tag.href = "/#" + tag.href.match(/\/wiki.+/)[0];
             tag.removeAttribute("title");
             tag.classList.add("wiki-anchor");
           }
