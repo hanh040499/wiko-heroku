@@ -229,7 +229,6 @@ export default {
           const parseText = parser.parseFromString(node.outerHTML, "text/html");
           const queryTag = parseText.querySelectorAll("a[href*='/wiki']");
           for (const tag of queryTag) {
-            tag.href = "/#" + tag.href.match(/\/wiki.+/)[0];
             tag.removeAttribute("title");
             tag.classList.add("wiki-anchor");
           }
@@ -359,6 +358,11 @@ export default {
         menu.onclick = () => this.handleClickContextMenu(anchor);
         menu.innerHTML = "<div class='p-1 bg-dark text-white'>Read later</div>";
         document.body.appendChild(menu);
+      });
+
+      anchor.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.$router.push(anchor.getAttribute("href"));
       });
     }
 
